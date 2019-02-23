@@ -1,0 +1,150 @@
+mysql> create database sekolah;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use sekolah;
+Database changed
+mysql> create table mahasiswa
+    -> (nim varchar(10) primary key,
+    -> nama varchar(25) not null,
+    -> alamatjalan varchar(30) not null,
+    -> kota varchar(30) not null,
+    -> kodepos varchar(30) not null,
+    -> nohp varchar(30) not null,
+    -> jeniskelamin varchar(30) not null,
+    -> tanggalLahir varchar(30) not null,
+    -> kodedosen varchar(30) not null);
+Query OK, 0 rows affected (1.83 sec)
+
+mysql> desc mahasiswa;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| nim          | varchar(10) | NO   | PRI | NULL    |       |
+| nama         | varchar(25) | NO   |     | NULL    |       |
+| alamatjalan  | varchar(30) | NO   |     | NULL    |       |
+| kota         | varchar(30) | NO   |     | NULL    |       |
+| kodepos      | varchar(30) | NO   |     | NULL    |       |
+| nohp         | varchar(30) | NO   |     | NULL    |       |
+| jeniskelamin | varchar(30) | NO   |     | NULL    |       |
+| tanggalLahir | varchar(30) | NO   |     | NULL    |       |
+| kodedosen    | varchar(30) | NO   |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+9 rows in set (0.00 sec)
+
+mysql> insert into mahasiswa
+    -> (nim, nama, alamatjalan, kota, kodepos, noHP, jenisKElamin, tanggalLahir, kodeDosen)
+    -> values
+    -> ("11223344", "Ari Santoso", " ", "Bekasi", " ", " ", "Laki-Laki", "1998-10-12", " "),
+    -> ("11223345", "Ario Talib", " ", "Cikarang", " ", " ", "Laki-Laki", "1999-11-16", " "),
+    -> ("11223346", "Dina Marlina", " ", "Karawang", " ", " ", "Perempuan", "1997-12-01", " "),
+    -> ("11223347", "Lisa Ayu", " ", "Bekasi", " ", " ", "Perempuan", "1996-01-02", " "),
+    -> ("11223348", "Tiara Wahidah", " ", "Bekasi", " ", " ", "Perempuan", "1980-02-05", " "),
+    -> ("11223349", "Anton Sinaga", " ", "Cikarang", " ", " ", "Laki-Laki", "1988-03-10", " ");
+Query OK, 6 rows affected (1.86 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from mahasiswa;
++----------+---------------+-------------+----------+---------+------+--------------+--------------+-----------+
+| nim      | nama          | alamatjalan | kota     | kodepos | nohp | jeniskelamin | tanggalLahir | kodedosen |
++----------+---------------+-------------+----------+---------+------+--------------+--------------+-----------+
+| 11223344 | Ari Santoso   |             | Bekasi   |         |      | Laki-Laki    | 1998-10-12   |           |
+| 11223345 | Ario Talib    |             | Cikarang |         |      | Laki-Laki    | 1999-11-16   |           |
+| 11223346 | Dina Marlina  |             | Karawang |         |      | Perempuan    | 1997-12-01   |           |
+| 11223347 | Lisa Ayu      |             | Bekasi   |         |      | Perempuan    | 1996-01-02   |           |
+| 11223348 | Tiara Wahidah |             | Bekasi   |         |      | Perempuan    | 1980-02-05   |           |
+| 11223349 | Anton Sinaga  |             | Cikarang |         |      | Laki-Laki    | 1988-03-10   |           |
++----------+---------------+-------------+----------+---------+------+--------------+--------------+-----------+
+6 rows in set (0.00 sec)
+
+
+mysql> update mahasiswa set tanggallahir = "1979-08-31"
+    -> where nim = "11223344";
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from mahasiswa;
++----------+---------------+-------------+----------+---------+------+--------------+--------------+-----------+
+| nim      | nama          | alamatjalan | kota     | kodepos | nohp | jeniskelamin | tanggalLahir | kodedosen |
++----------+---------------+-------------+----------+---------+------+--------------+--------------+-----------+
+| 11223344 | Ari Santoso   |             | Bekasi   |         |      | Laki-Laki    | 1979-08-31   |           |
+| 11223345 | Ario Talib    |             | Cikarang |         |      | Laki-Laki    | 1999-11-16   |           |
+| 11223346 | Dina Marlina  |             | Karawang |         |      | Perempuan    | 1997-12-01   |           |
+| 11223347 | Lisa Ayu      |             | Bekasi   |         |      | Perempuan    | 1996-01-02   |           |
+| 11223348 | Tiara Wahidah |             | Bekasi   |         |      | Perempuan    | 1980-02-05   |           |
+| 11223349 | Anton Sinaga  |             | Cikarang |         |      | Laki-Laki    | 1988-03-10   |           |
++----------+---------------+-------------+----------+---------+------+--------------+--------------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> delete from mahasiswa where nim = "11223346";
+Query OK, 1 row affected (1.76 sec)
+
+mysql> select * from mahasiswa;
++----------+---------------+-------------+----------+---------+------+--------------+--------------+-----------+
+| nim      | nama          | alamatjalan | kota     | kodepos | nohp | jeniskelamin | tanggalLahir | kodedosen |
++----------+---------------+-------------+----------+---------+------+--------------+--------------+-----------+
+| 11223344 | Ari Santoso   |             | Bekasi   |         |      | Laki-Laki    | 1979-08-31   |           |
+| 11223345 | Ario Talib    |             | Cikarang |         |      | Laki-Laki    | 1999-11-16   |           |
+| 11223347 | Lisa Ayu      |             | Bekasi   |         |      | Perempuan    | 1996-01-02   |           |
+| 11223348 | Tiara Wahidah |             | Bekasi   |         |      | Perempuan    | 1980-02-05   |           |
+| 11223349 | Anton Sinaga  |             | Cikarang |         |      | Laki-Laki    | 1988-03-10   |           |
++----------+---------------+-------------+----------+---------+------+--------------+--------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select * from mahasiswa
+    -> where tanggalLahir >="1996-01-02";
++----------+------------+-------------+----------+---------+------+--------------+--------------+-----------+
+| nim      | nama       | alamatjalan | kota     | kodepos | nohp | jeniskelamin | tanggalLahir | kodedosen |
++----------+------------+-------------+----------+---------+------+--------------+--------------+-----------+
+| 11223345 | Ario Talib |             | Cikarang |         |      | Laki-Laki    | 1999-11-16   |           |
+| 11223347 | Lisa Ayu   |             | Bekasi   |         |      | Perempuan    | 1996-01-02   |           |
++----------+------------+-------------+----------+---------+------+--------------+--------------+-----------+
+2 rows in set (0.06 sec)
+
+mysql> select nama, kota, jeniskelamin from mahasiswa
+    -> where kota = "Bekasi"
+    -> and jeniskelamin = "Perempuan";
++---------------+--------+--------------+
+| nama          | kota   | jeniskelamin |
++---------------+--------+--------------+
+| Lisa Ayu      | Bekasi | Perempuan    |
+| Tiara Wahidah | Bekasi | Perempuan    |
++---------------+--------+--------------+
+2 rows in set (0.06 sec)
+
+mysql> select * from mahasiswa
+    -> where kota = "Bekasi" and jenisKelamin = "Laki-Laki"
+    -> or tanggalLahir <= "1997" and jenisKelamin = "Perempuan"
+    -> order by nama;
++----------+---------------+-------------+--------+---------+------+--------------+--------------+-----------+
+| nim      | nama          | alamatjalan | kota   | kodepos | nohp | jeniskelamin | tanggalLahir | kodedosen |
++----------+---------------+-------------+--------+---------+------+--------------+--------------+-----------+
+| 11223344 | Ari Santoso   |             | Bekasi |         |      | Laki-Laki    | 1979-08-31   |           |
+| 11223347 | Lisa Ayu      |             | Bekasi |         |      | Perempuan    | 1996-01-02   |           |
+| 11223348 | Tiara Wahidah |             | Bekasi |         |      | Perempuan    | 1980-02-05   |           |
++----------+---------------+-------------+--------+---------+------+--------------+--------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select nama, alamatjalan from mahasiswa;
++---------------+-------------+
+| nama          | alamatjalan |
++---------------+-------------+
+| Ari Santoso   |             |
+| Ario Talib    |             |
+| Lisa Ayu      |             |
+| Tiara Wahidah |             |
+| Anton Sinaga  |             |
++---------------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from mahasiswa
+    -> order by nama;
++----------+---------------+-------------+----------+---------+------+--------------+--------------+-----------+
+| nim      | nama          | alamatjalan | kota     | kodepos | nohp | jeniskelamin | tanggalLahir | kodedosen |
++----------+---------------+-------------+----------+---------+------+--------------+--------------+-----------+
+| 11223349 | Anton Sinaga  |             | Cikarang |         |      | Laki-Laki    | 1988-03-10   |           |
+| 11223344 | Ari Santoso   |             | Bekasi   |         |      | Laki-Laki    | 1979-08-31   |           |
+| 11223345 | Ario Talib    |             | Cikarang |         |      | Laki-Laki    | 1999-11-16   |           |
+| 11223347 | Lisa Ayu      |             | Bekasi   |         |      | Perempuan    | 1996-01-02   |           |
+| 11223348 | Tiara Wahidah |             | Bekasi   |         |      | Perempuan    | 1980-02-05   |           |
++----------+---------------+-------------+----------+---------+------+--------------+--------------+-----------+
+5 rows in set (0.00 sec)
